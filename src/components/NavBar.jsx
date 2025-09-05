@@ -1,13 +1,40 @@
-const NavBar = () => {
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { NavLink, Link, useNavigate } from "react-router";
+
+const NavBar = ({ usuarioAdmin, setUsuarioAdmin }) => {
+  const navegacion = useNavigate()
+
+  const logout = () => {
+    setUsuarioAdmin(false)
+    sessionStorage.removeItem('userKey')
+    navegacion('/')
+  }
+  
   return (
-    <header>
-      <nav className="navbar navbar-expand-lg bg-black">
-				<div className="container-fluid w-100 d-flex justify-content-between">
-					<h6 className="mb-0 text-white">Blog recetas📝📃</h6>
-					<button className="botonAdministrar">Administrar Recetas</button>
-				</div>
-      </nav>
-    </header>
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <NavLink className="nav-link" to={"/"}>
+              Inicio
+            </NavLink>
+            {usuarioAdmin ? (
+              <>
+                <NavLink className="nav-link" to={"/administrador"}>
+                  Administrador
+                </NavLink>
+                <Button className="nav-link" onClick={logout}>Logout</Button>
+              </>
+            ) : (
+              <NavLink className="nav-link" to={"/login"}>
+                Login
+              </NavLink>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

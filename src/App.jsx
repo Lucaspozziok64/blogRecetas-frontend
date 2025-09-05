@@ -1,19 +1,54 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Titulo from "./components/Titulo";
-import Recetas from "./components/Recetas";
 import NavBar from "./components/NavBar";
+import { BrowserRouter, Route } from "react-router";
+import { Routes } from "react-router";
+import Inicio from "./components/Inicio";
+import Administracion from "./components/pages/Administracion";
+import { useEffect, useState } from "react";
+import Login from "./components/Login";
 
 function App() {
+  const [recetas, setRecetas] = useState([]);
+  const usuarioLogueado =
+    JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
+  const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
+  const [formData, setFormData] = useState({
+    titulo: "",
+    descripcion: "",
+    imagen: "",
+    ingredientes: "",
+    pasos: "",
+  });
+
+  useEffect(() => {
+    const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+    setRecetas(recetas);
+  }, []);
+
   return (
     <>
-      <NavBar />
-      <main className="container my-5">
-        <Titulo />
-        <div className="container my-3 row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-2">
-          <Recetas />
-        </div>
-      </main>
+      <BrowserRouter>
+        <NavBar usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin} />
+        <Routes>
+          <Route path="/" element={<Inicio recetas={recetas} />}></Route>
+          <Route
+            path="/administrador"
+            element={
+              <Administracion
+                recetas={recetas}
+                setRecetas={setRecetas}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
+          ></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
