@@ -25,7 +25,7 @@ const Login = ({ setUsuarioAdmin }) => {
 
   return (
     <section className="container my-3">
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center my-5">Login</h1>
       <Row xs={1} md={2}>
         <Col className="mb-4">
           <Form onSubmit={handleSubmit(iniciarSesion)}>
