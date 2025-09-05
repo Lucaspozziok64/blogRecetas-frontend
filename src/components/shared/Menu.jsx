@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavLink, Link, useNavigate } from "react-router";
 
-const NavBar = ({ usuarioAdmin, setUsuarioAdmin }) => {
+const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
   const navegacion = useNavigate()
 
   const logout = () => {
@@ -38,4 +38,4 @@ const NavBar = ({ usuarioAdmin, setUsuarioAdmin }) => {
   );
 };
 
-export default NavBar;
+export default Menu;

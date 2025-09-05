@@ -1,12 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/NavBar";
 import { BrowserRouter, Route } from "react-router";
 import { Routes } from "react-router";
-import Inicio from "./components/Inicio";
+import Inicio from "./components/pages/Inicio";
 import Administracion from "./components/pages/Administracion";
 import { useEffect, useState } from "react";
-import Login from "./components/Login";
+import Login from "./components/pages/Login";
+import Menu from "./components/shared/Menu";
 
 function App() {
   const [recetas, setRecetas] = useState([]);
@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin} />
+        <Menu usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin} />
         <Routes>
           <Route path="/" element={<Inicio recetas={recetas} />}></Route>
           <Route

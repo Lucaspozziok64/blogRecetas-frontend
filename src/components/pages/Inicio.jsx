@@ -1,5 +1,5 @@
 import Titulo from "./Titulo";
-import { defaultRecipes } from "../data/datosPrueba";
+import { defaultRecipes } from "../../data/datosPrueba";
 import { useEffect } from "react";
 
 const Inicio = ({ recetas}) => {
