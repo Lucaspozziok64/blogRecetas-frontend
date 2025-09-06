@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router";
 import { Routes } from "react-router";
 import Inicio from "./components/pages/Inicio";
-import Administracion from "./components/pages/Administracion";
 import { useEffect, useState } from "react";
 import Login from "./components/pages/Login";
 import Menu from "./components/shared/Menu";
+import Administrador from "./components/pages/Administrador";
 
 function App() {
   const [recetas, setRecetas] = useState([]);
@@ -35,7 +35,7 @@ function App() {
           <Route
             path="/administrador"
             element={
-              <Administracion
+              <Administrador
                 recetas={recetas}
                 setRecetas={setRecetas}
                 formData={formData}
