@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const Formulariorecetas = ({ titulo, crearReceta }) => {
+const Formulariorecetas = ({ titulo, crearRecetas }) => {
   const {
     register,
     handleSubmit,
@@ -12,9 +12,26 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (receta) => {
+  const onSubmit = (receta) => {
     if (titulo === "Crear receta") {
-      crearReceta();
+      const { inputTitulo, inputImagen, inputCategoria, descripcion, pasos } =
+        receta;
+      const nuevaReceta = {
+        titulo: inputTitulo,
+        imagen: inputImagen,
+        categoria: inputCategoria,
+        descripcion: descripcion,
+        pasos: pasos,
+      };
+
+      crearRecetas(nuevaReceta)
+
+      reset();
+      Swal.fire({
+        title: "Receta creada",
+        text: `La pelicula/serie ${nuevaReceta.titulo} fue creada correctamente.`,
+        icon: "success",
+      });
       reset();
     }
   };
@@ -29,7 +46,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
           <Form.Control
             type="text"
             placeholder="Ej: Ensalada Rusa"
-            {...register("nombreReceta", {
+            {...register("inputTitulo", {
               required: "El nombre de la receta es un dato obligatorio",
               minLength: {
                 value: 2,
@@ -44,7 +61,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.nombreProducto?.message}
+            {errors.inputTitulo?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
@@ -52,7 +69,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
           <Form.Control
             type="text"
             placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
-            {...register("imagen", {
+            {...register("inputImagen", {
               required: "La url de la imagen es un dato obligatorio",
               pattern: {
                 value:
@@ -63,13 +80,13 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.imagen?.message}
+            {errors.inputImagen?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoría*</Form.Label>
           <Form.Select
-            {...register("categoria", {
+            {...register("inputCategoria", {
               required: "Debe seleccionar una categoria",
             })}
           >
@@ -80,7 +97,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
             <option value="salado">Salado</option>
           </Form.Select>
           <Form.Text className="text-danger">
-            {errors.categoria?.message}
+            {errors.inputCategoria?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
@@ -89,7 +106,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
             type="text"
             placeholder="Ej: Un pastafrola dulce y rica"
             as="textarea"
-            {...register("descripcion_breve", {
+            {...register("descripcion", {
               required: "La descripción breve es un dato obligatorio",
               minLength: {
                 value: 5,
@@ -103,7 +120,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.descripcion_breve?.message}
+            {errors.descripcion?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
@@ -125,9 +142,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
               },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.descripcion_amplia?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.pasos?.message}</Form.Text>
         </Form.Group>
         <Button type="submit" variant="success">
           Guardar

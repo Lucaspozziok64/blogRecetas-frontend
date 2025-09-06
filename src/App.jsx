@@ -18,13 +18,13 @@ function App() {
     JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
   const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
 
-  const crearReceta = (recetaNueva) => {
+  const crearRecetas = (recetaNueva)=> {
     //Agregar un id unico al producto nuevo
     recetaNueva.id = uuidv4();
     //agregar el prodcto al state de productos
-    setRecetas([...recetas, recetaNueva]);
-    return true;
-  };
+    setRecetas([...recetas, recetaNueva])
+    return true
+  }
 
   useEffect(() => {
     localStorage.setItem("recetas", JSON.stringify(recetas));
@@ -51,7 +51,7 @@ function App() {
               element={
                 <Formulariorecetas
                   titulo={"Crear receta"}
-                  crearReceta={crearReceta}
+                  crearRecetas={crearRecetas}
                 />
               }
             ></Route>

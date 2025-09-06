@@ -1,5 +1,4 @@
 import { Button, Table } from "react-bootstrap";
-import { defaultRecipes } from "../../data/datosPrueba";
 import { Link } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -7,7 +6,7 @@ const Administrador = ({ recetas, setRecetas }) => {
   return (
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
-        <h1 className="display-4 ">Recetas disponibles</h1>
+        <h1 className="display-4">Recetas disponibles</h1>
         <div>
           <Link className="btn btn-primary" to={"/administrador/crear"}>
             <i className="bi bi-file-earmark-plus mx-1"></i>
@@ -32,12 +31,12 @@ const Administrador = ({ recetas, setRecetas }) => {
         <tbody>
           {recetas.map((receta, index) => (
             <tr key={index}>
-              <th scope="row">1</th>
-              <td>{receta.titulo}</td>
+              <th className="text-center">1</th>
+              <td className="text-center">{receta.titulo}</td>
               <td className="text-center">
-                <img src={receta.imagen}></img>
+                <img src={receta.imagen} className="img-thumbnail"></img>
               </td>
-              <td>{receta.categoria}</td>
+              <td className="text-center">{receta.categoria}</td>
               <td className="text-center">
                 <Link
                   className="me-lg-2 btn btn-warning"

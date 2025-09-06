@@ -11,7 +11,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-black">
       <Container>
         <Navbar.Brand
           as={Link}

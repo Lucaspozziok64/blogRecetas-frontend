@@ -1,10 +1,16 @@
 #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .imagenCarusel {
-    height: 470px;
-    object-fit: cover;
+  height: 470px;
+  object-fit: cover;
+}
+
+.img-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
 }
