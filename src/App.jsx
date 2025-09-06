@@ -7,24 +7,28 @@ import { useEffect, useState } from "react";
 import Login from "./components/pages/Login";
 import Menu from "./components/shared/Menu";
 import Administrador from "./components/pages/Administrador";
+import ProtectorAdmin from "./components/routes/ProtectorAdmin";
+import Formulariorecetas from "./components/pages/receta/FormularioReceta";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [recetas, setRecetas] = useState([]);
+  const recetasLocalStorage = JSON.parse(localStorage.getItem("recetas")) || [];
+  const [recetas, setRecetas] = useState(recetasLocalStorage);
   const usuarioLogueado =
     JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
   const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
-  const [formData, setFormData] = useState({
-    titulo: "",
-    descripcion: "",
-    imagen: "",
-    ingredientes: "",
-    pasos: "",
-  });
+
+  const crearReceta = (recetaNueva) => {
+    //Agregar un id unico al producto nuevo
+    recetaNueva.id = uuidv4();
+    //agregar el prodcto al state de productos
+    setRecetas([...recetas, recetaNueva]);
+    return true;
+  };
 
   useEffect(() => {
-    const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
-    setRecetas(recetas);
-  }, []);
+    localStorage.setItem("recetas", JSON.stringify(recetas));
+  }, [recetas]);
 
   return (
     <>
@@ -34,15 +38,24 @@ function App() {
           <Route path="/" element={<Inicio recetas={recetas} />}></Route>
           <Route
             path="/administrador"
-            element={
-              <Administrador
-                recetas={recetas}
-                setRecetas={setRecetas}
-                formData={formData}
-                setFormData={setFormData}
-              />
-            }
-          />
+            element={<ProtectorAdmin isAdmin={usuarioAdmin} />}
+          >
+            <Route
+              index
+              element={
+                <Administrador recetas={recetas} setRecetas={setRecetas} />
+              }
+            ></Route>
+            <Route
+              path="crear"
+              element={
+                <Formulariorecetas
+                  titulo={"Crear receta"}
+                  crearReceta={crearReceta}
+                />
+              }
+            ></Route>
+          </Route>
           <Route
             path="/login"
             element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
