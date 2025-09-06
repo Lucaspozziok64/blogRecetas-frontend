@@ -6,7 +6,7 @@ const CaruselRecetas = () => {
       data-bs-ride="carousel"
     >
       <div className="carousel-inner">
-        <div className="carousel-item active" data-bs-interval="4000">
+        <div className="carousel-item active" data-bs-interval="3000">
           <img
             src="https://images.pexels.com/photos/8804990/pexels-photo-8804990.jpeg"
             className="d-block w-100 imagenCarusel"
@@ -20,7 +20,7 @@ const CaruselRecetas = () => {
             alt="Imagen de plato con verduras"
           />
         </div>
-        <div className="carousel-item" data-bs-interval="2000">
+        <div className="carousel-item" data-bs-interval="3000">
           <img
             src="https://images.pexels.com/photos/10254480/pexels-photo-10254480.jpeg"
             className="d-block w-100 imagenCarusel"

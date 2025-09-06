@@ -5,7 +5,7 @@ const Titulo = () => {
         className="scrolling-text"
         style={{ fontStyle: "italic" }}
       >
-        ! No te pierdas nuestras mejores recetas destacadas !
+        ! Bienvendo a nuestro blog de recetas! ........ ! No te pierdas nuestras mejores recetas destacadas y explora nuestra seccion !
       </h1>
     </div>
   );
