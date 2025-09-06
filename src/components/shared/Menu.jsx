@@ -59,14 +59,21 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
                 <NavLink className="nav-link" to={"/administrador"}>
                   Administrador
                 </NavLink>
-                <Button className="nav-link" onClick={logout}>
-                  Logout
+                <Button className="nav-link w-25" onClick={logout}>
+                  Cerrar Sesion
                 </Button>
               </>
             ) : (
-              <NavLink className="nav-link" to={"/login"}>
-                Login
-              </NavLink>
+              <>
+                <NavLink className="nav-link" to={"/login"}>
+                  Login
+                </NavLink>
+                <Button
+                  className="tinos nav-link boton-crea-cuenta"
+                >
+                  Crea tu cuenta
+                </Button>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

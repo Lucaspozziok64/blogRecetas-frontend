@@ -34,6 +34,16 @@
     transform: translateX(0); /* Inicia desde la derecha */
   }
   100% {
-    transform: translateX(-100%); /* Se mueve hacia la izquierda hasta el final */
+    transform: translateX(
+      -100%
+    ); /* Se mueve hacia la izquierda hasta el final */
+  }
+}
+
+@media (max-width: 991px) {
+  .boton-crea-cuenta {
+    background-color: rgb(1, 128, 255) !important;
+    width: 25%;
+    margin-bottom: 1px;
   }
 }

@@ -6,21 +6,21 @@ const CaruselRecetas = () => {
       data-bs-ride="carousel"
     >
       <div className="carousel-inner">
-        <div className="carousel-item active" data-bs-interval="5000">
+        <div className="carousel-item active" data-bs-interval="4000">
           <img
             src="https://images.pexels.com/photos/8804990/pexels-photo-8804990.jpeg"
             className="d-block w-100 imagenCarusel"
             alt="Imagen de celular con recetas"
           />
         </div>
-        <div className="carousel-item" data-bs-interval="4000">
+        <div className="carousel-item" data-bs-interval="3000">
           <img
             src="https://images.pexels.com/photos/9004736/pexels-photo-9004736.jpeg"
             className="d-block w-100 imagenCarusel"
             alt="Imagen de plato con verduras"
           />
         </div>
-        <div className="carousel-item" data-bs-interval="1000">
+        <div className="carousel-item" data-bs-interval="2000">
           <img
             src="https://images.pexels.com/photos/10254480/pexels-photo-10254480.jpeg"
             className="d-block w-100 imagenCarusel"
