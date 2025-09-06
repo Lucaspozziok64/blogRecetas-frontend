@@ -1,6 +1,7 @@
 import { Col, Row, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Login = ({ setUsuarioAdmin }) => {
   const {
@@ -18,6 +19,12 @@ const Login = ({ setUsuarioAdmin }) => {
       setUsuarioAdmin(true);
       sessionStorage.setItem("userKey", true);
       navegacion("/administrador");
+      Swal.fire({
+        title: "Bienvenido/@ Admin!",
+        text: "Credenciales correctas",
+        icon: "success",
+        draggable: true,
+      });
     } else {
       console.log("Credenciales Incorrectas");
     }

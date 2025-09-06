@@ -1,13 +1,31 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavLink, Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
   const navegacion = useNavigate();
 
   const logout = () => {
-    setUsuarioAdmin(false);
-    sessionStorage.removeItem("userKey");
-    navegacion("/");
+    Swal.fire({
+      title: "Quieres Cerrar Sesion?",
+      text: "cerraras sesion como admin, y entraras en vista como usuario!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setUsuarioAdmin(false);
+        sessionStorage.removeItem("userKey");
+        navegacion("/");
+        Swal.fire({
+          title: "Sesion cerrada!",
+          text: "Has cerrado sesion exitosamente, Estas en la vista de Usuario",
+          icon: "success",
+        });
+      }
+    });
   };
 
   return (
@@ -26,7 +44,9 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
             className="img-fluid"
             width={40}
           />
-          <p className="mx-4 m-0 d-flex justify-content-center align-items-center">Blog de Recetas</p>
+          <p className="mx-4 m-0 d-flex justify-content-center align-items-center">
+            Blog de Recetas
+          </p>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
