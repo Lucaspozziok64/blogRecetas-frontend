@@ -56,10 +56,12 @@ function App() {
               }
             ></Route>
             <Route
-              path="editar"
+              path="editar/:id"
               element={
                 <Formulariorecetas
                   titulo={"Editar receta"}
+                  setRecetas={setRecetas}
+                  recetas={recetas}
                 />
               }
             ></Route>

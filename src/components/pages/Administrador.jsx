@@ -40,7 +40,7 @@ const Administrador = ({ recetas, setRecetas }) => {
               <td className="text-center">
                 <Link
                   className="me-lg-2 btn btn-warning"
-                  to={"/administrador/editar/"}
+                  to={`/administrador/editar/` + receta.id}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </Link>

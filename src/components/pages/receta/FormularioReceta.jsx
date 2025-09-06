@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { useParams } from "react-router";
 
-const Formulariorecetas = ({ titulo, crearRecetas }) => {
+const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
   const {
     register,
     handleSubmit,
@@ -11,6 +13,23 @@ const Formulariorecetas = ({ titulo, crearRecetas }) => {
     setValue,
     formState: { errors },
   } = useForm();
+
+  const { id } = useParams()
+  console.log(id)
+
+useEffect(() => {
+  if (titulo === "Editar receta" && id) {
+    const recetaBuscada = recetas.find((receta) => receta.id === id);
+
+    if (recetaBuscada) {
+      setValue("inputTitulo", recetaBuscada.titulo);
+      setValue("inputImagen", recetaBuscada.imagen);
+      setValue("inputCategoria", recetaBuscada.categoria);
+      setValue("descripcion", recetaBuscada.descripcion);
+      setValue("pasos", recetaBuscada.pasos);
+    }
+  }
+}, [titulo, id, recetas]);
 
   const onSubmit = (receta) => {
     if (titulo === "Crear receta") {
@@ -24,7 +43,7 @@ const Formulariorecetas = ({ titulo, crearRecetas }) => {
         pasos: pasos,
       };
 
-      crearRecetas(nuevaReceta)
+      crearRecetas(nuevaReceta);
 
       reset();
       Swal.fire({
