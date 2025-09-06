@@ -10,6 +10,7 @@ import Administrador from "./components/pages/Administrador";
 import ProtectorAdmin from "./components/routes/ProtectorAdmin";
 import Formulariorecetas from "./components/pages/receta/FormularioReceta";
 import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2";
 
 function App() {
   const recetasLocalStorage = JSON.parse(localStorage.getItem("recetas")) || [];
@@ -18,17 +19,38 @@ function App() {
     JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
   const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
 
-  const crearRecetas = (recetaNueva)=> {
+  const crearRecetas = (recetaNueva) => {
     //Agregar un id unico al producto nuevo
     recetaNueva.id = uuidv4();
     //agregar el prodcto al state de productos
-    setRecetas([...recetas, recetaNueva])
-    return true
-  }
+    setRecetas([...recetas, recetaNueva]);
+    return true;
+  };
 
   useEffect(() => {
     localStorage.setItem("recetas", JSON.stringify(recetas));
   }, [recetas]);
+
+  const borrarReceta = (id) => {
+    Swal.fire({
+      title: "Estas seguro de eliminar esta cita?",
+      text: "No podras revertir la tarjeta!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Borrar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setRecetas(recetas.filter((receta) => receta.id !== id));
+        Swal.fire({
+          title: "Cita eliminada!",
+          text: "Has eliminada la tarjeta",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -43,7 +65,7 @@ function App() {
             <Route
               index
               element={
-                <Administrador recetas={recetas} setRecetas={setRecetas} />
+                <Administrador recetas={recetas} setRecetas={setRecetas} borrarReceta={borrarReceta} />
               }
             ></Route>
             <Route

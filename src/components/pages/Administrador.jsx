@@ -1,8 +1,9 @@
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ItemRecetas from "./componentsAdministrador/ItemRecetas";
 
-const Administrador = ({ recetas, setRecetas }) => {
+const Administrador = ({ recetas, borrarReceta }) => {
   return (
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
@@ -29,27 +30,7 @@ const Administrador = ({ recetas, setRecetas }) => {
           </tr>
         </thead>
         <tbody>
-          {recetas.map((receta, index) => (
-            <tr key={index}>
-              <th className="text-center">1</th>
-              <td className="text-center">{receta.titulo}</td>
-              <td className="text-center">
-                <img src={receta.imagen} className="img-thumbnail"></img>
-              </td>
-              <td className="text-center">{receta.categoria}</td>
-              <td className="text-center">
-                <Link
-                  className="me-lg-2 btn btn-warning"
-                  to={`/administrador/editar/` + receta.id}
-                >
-                  <i className="bi bi-pencil-square"></i>
-                </Link>
-                <Button variant="danger">
-                  <i className="bi bi-trash"></i>
-                </Button>
-              </td>
-            </tr>
-          ))}
+          {recetas.map((receta, indice)=><ItemRecetas key={receta.id} fila={indice + 1} receta={receta} borrarReceta={()=> borrarReceta(receta.id)} />)}
         </tbody>
       </Table>
     </section>
