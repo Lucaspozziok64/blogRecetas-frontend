@@ -55,6 +55,14 @@ function App() {
                 />
               }
             ></Route>
+            <Route
+              path="editar"
+              element={
+                <Formulariorecetas
+                  titulo={"Editar receta"}
+                />
+              }
+            ></Route>
           </Route>
           <Route
             path="/login"

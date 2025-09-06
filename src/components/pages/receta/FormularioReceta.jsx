@@ -1,5 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const Formulariorecetas = ({ titulo, crearReceta }) => {
@@ -13,8 +14,8 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
 
   const onSubmit = async (receta) => {
     if (titulo === "Crear receta") {
-      crearReceta()
-      reset()
+      crearReceta();
+      reset();
     }
   };
 
@@ -24,7 +25,7 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
       <hr />
       <Form className="my-4" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="formNombreProdcuto">
-          <Form.Label>Producto*</Form.Label>
+          <Form.Label>Receta*</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ej: Ensalada Rusa"
@@ -116,13 +117,11 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
               required: "Los pasos es un dato obligatorio",
               minLength: {
                 value: 10,
-                message:
-                  "Los pasos debe tener almenos 10 caracteres",
+                message: "Los pasos debe tener almenos 10 caracteres",
               },
               maxLength: {
                 value: 500,
-                message:
-                  "Los pasos debe tener como máximo 500 caracteres",
+                message: "Los pasos debe tener como máximo 500 caracteres",
               },
             })}
           />
@@ -133,6 +132,9 @@ const Formulariorecetas = ({ titulo, crearReceta }) => {
         <Button type="submit" variant="success">
           Guardar
         </Button>
+        <Link className="btn btn-danger mx-2" to={"/administrador"}>
+          Cancelar
+        </Link>
       </Form>
     </section>
   );
