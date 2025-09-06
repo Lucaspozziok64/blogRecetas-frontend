@@ -110,10 +110,10 @@ useEffect(() => {
             })}
           >
             <option value="">Seleccione una opcion</option>
-            <option value="Infusiones">Comida</option>
-            <option value="Batidos">Pasteles</option>
-            <option value="dulce">Dulce</option>
-            <option value="salado">Salado</option>
+            <option value="Comida">Comida</option>
+            <option value="Pasteles">Pasteles</option>
+            <option value="Dulce">Dulce</option>
+            <option value="Salado">Salado</option>
           </Form.Select>
           <Form.Text className="text-danger">
             {errors.inputCategoria?.message}

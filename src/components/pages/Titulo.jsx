@@ -1,8 +1,14 @@
-
 const Titulo = () => {
-    return (
-      <h1 className='text-center' style={{ fontStyle: 'italic' }}>Mira nuestras recetas destacadas</h1>
-    );
+  return (
+    <div className="scrolling-container my-3">
+      <h1
+        className="scrolling-text"
+        style={{ fontStyle: "italic" }}
+      >
+        ! No te pierdas nuestras mejores recetas destacadas !
+      </h1>
+    </div>
+  );
 };
 
 export default Titulo;
