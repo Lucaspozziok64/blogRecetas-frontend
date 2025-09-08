@@ -14,22 +14,21 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
     formState: { errors },
   } = useForm();
 
-  const { id } = useParams()
-  console.log(id)
+  const { id } = useParams();
 
-useEffect(() => {
-  if (titulo === "Editar receta" && id) {
-    const recetaBuscada = recetas.find((receta) => receta.id === id);
+  useEffect(() => {
+    if (titulo === "Editar receta" && id) {
+      const recetaBuscada = recetas.find((receta) => receta.id === id);
 
-    if (recetaBuscada) {
-      setValue("inputTitulo", recetaBuscada.titulo);
-      setValue("inputImagen", recetaBuscada.imagen);
-      setValue("inputCategoria", recetaBuscada.categoria);
-      setValue("descripcion", recetaBuscada.descripcion);
-      setValue("pasos", recetaBuscada.pasos);
+      if (recetaBuscada) {
+        setValue("inputTitulo", recetaBuscada.titulo);
+        setValue("inputImagen", recetaBuscada.imagen);
+        setValue("inputCategoria", recetaBuscada.categoria);
+        setValue("descripcion", recetaBuscada.descripcion);
+        setValue("pasos", recetaBuscada.pasos);
+      }
     }
-  }
-}, [titulo, id, recetas]);
+  }, [titulo, id, recetas]);
 
   const onSubmit = (receta) => {
     if (titulo === "Crear receta") {

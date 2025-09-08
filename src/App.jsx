@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 
 function App() {
-  const recetasLocalStorage = JSON.parse(localStorage.getItem("recetas")) || [];
+  const recetasLocalStorage = JSON.parse(localStorage.getItem("blogRecetas")) || [];
   const [recetas, setRecetas] = useState(recetasLocalStorage);
   const usuarioLogueado =
     JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
@@ -24,11 +24,10 @@ function App() {
     recetaNueva.id = uuidv4();
     //agregar el prodcto al state de productos
     setRecetas([...recetas, recetaNueva]);
-    return true;
-  };
+    };
 
   useEffect(() => {
-    localStorage.setItem("recetas", JSON.stringify(recetas));
+    localStorage.setItem("blogRecetas", JSON.stringify(recetas));
   }, [recetas]);
 
   const borrarReceta = (id) => {
@@ -44,8 +43,8 @@ function App() {
       if (result.isConfirmed) {
         setRecetas(recetas.filter((receta) => receta.id !== id));
         Swal.fire({
-          title: "Cita eliminada!",
-          text: "Has eliminada la tarjeta",
+          title: "Receta eliminada!",
+          text: "Has eliminada la receta",
           icon: "success",
         });
       }

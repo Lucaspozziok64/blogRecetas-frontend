@@ -2,8 +2,10 @@ import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ItemRecetas from "./componentsAdministrador/ItemRecetas";
+import { defaultRecipes } from "../../data/datosPrueba";
 
 const Administrador = ({ recetas, borrarReceta }) => {
+  
   return (
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
@@ -30,7 +32,14 @@ const Administrador = ({ recetas, borrarReceta }) => {
           </tr>
         </thead>
         <tbody>
-          {recetas.map((receta, indice)=><ItemRecetas key={receta.id} fila={indice + 1} receta={receta} borrarReceta={()=> borrarReceta(receta.id)} />)}
+          {recetas.map((receta, indice) => (
+            <ItemRecetas
+              key={receta.id}
+              fila={indice + 1}
+              receta={receta}
+              borrarReceta={() => borrarReceta(receta.id)}
+            />
+          ))}
         </tbody>
       </Table>
     </section>
