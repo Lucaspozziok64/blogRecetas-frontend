@@ -5,7 +5,7 @@ const ItemRecetas = ({ receta, fila, borrarReceta }) => {
   return (
     <tr>
       <th className="text-center">{fila}</th>
-      <td className="text-center">{receta.titulo}</td>
+      <td className="text-center">{receta.nombreReceta}</td>
       <td className="text-center">
         <img src={receta.imagen} className="img-thumbnail"></img>
       </td>

@@ -21,7 +21,7 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
       const recetaBuscada = recetas.find((receta) => receta.id === id);
 
       if (recetaBuscada) {
-        setValue("inputTitulo", recetaBuscada.titulo);
+        setValue("inputTitulo", recetaBuscada.nombreReceta);
         setValue("inputImagen", recetaBuscada.imagen);
         setValue("inputCategoria", recetaBuscada.categoria);
         setValue("descripcion", recetaBuscada.descripcion);
@@ -35,7 +35,7 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
       const { inputTitulo, inputImagen, inputCategoria, descripcion, pasos } =
         receta;
       const nuevaReceta = {
-        titulo: inputTitulo,
+        nombreReceta: inputTitulo,
         imagen: inputImagen,
         categoria: inputCategoria,
         descripcion: descripcion,
@@ -47,7 +47,7 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
       reset();
       Swal.fire({
         title: "Receta creada",
-        text: `La receta ${nuevaReceta.titulo} fue creada correctamente.`,
+        text: `La receta ${nuevaReceta.nombreReceta} fue creada correctamente.`,
         icon: "success",
       });
       reset();
