@@ -2,7 +2,7 @@ import Titulo from "./Titulo";
 import { defaultRecipes } from "../../data/datosPrueba";
 import { useEffect } from "react";
 import CaruselRecetas from "./componentsInicio/CaruselRecetas";
-import RecipeCard from "./receta/Recetas";
+import CardRecetas from "./receta/CardRecetas";
 
 const Inicio = ({ recetas }) => {
 
@@ -19,7 +19,7 @@ const Inicio = ({ recetas }) => {
         <div>
           <div className="container my-3 row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
             {recetas.map((receta) => (
-              <RecipeCard key={receta.id} receta={receta} />
+              <CardRecetas key={receta.id} receta={receta} />
             ))}
           </div>
         </div>
