@@ -11,9 +11,11 @@ import ProtectorAdmin from "./components/routes/ProtectorAdmin";
 import Formulariorecetas from "./components/pages/receta/FormularioReceta";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import DetalleReceta from "./components/pages/DetalleReceta";
 
 function App() {
-  const recetasLocalStorage = JSON.parse(localStorage.getItem("blogRecetas")) || [];
+  const recetasLocalStorage =
+    JSON.parse(localStorage.getItem("blogRecetas")) || [];
   const [recetas, setRecetas] = useState(recetasLocalStorage);
   const usuarioLogueado =
     JSON.parse(sessionStorage.getItem("userKey")) || false; // Se puede guardar con True o false
@@ -24,7 +26,7 @@ function App() {
     recetaNueva.id = uuidv4();
     //agregar el prodcto al state de productos
     setRecetas([...recetas, recetaNueva]);
-    };
+  };
 
   useEffect(() => {
     localStorage.setItem("blogRecetas", JSON.stringify(recetas));
@@ -58,13 +60,26 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio recetas={recetas} />}></Route>
           <Route
+            path="/detalle"
+            element={
+              <DetalleReceta
+                recetas={recetas}
+                setRecetas={setRecetas}
+              />
+            }
+          ></Route>
+          <Route
             path="/administrador"
             element={<ProtectorAdmin isAdmin={usuarioAdmin} />}
           >
             <Route
               index
               element={
-                <Administrador recetas={recetas} setRecetas={setRecetas} borrarReceta={borrarReceta} />
+                <Administrador
+                  recetas={recetas}
+                  setRecetas={setRecetas}
+                  borrarReceta={borrarReceta}
+                />
               }
             ></Route>
             <Route
