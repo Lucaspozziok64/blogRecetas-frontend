@@ -7,8 +7,8 @@ import CardRecetas from "./receta/CardRecetas";
 const Inicio = ({ recetas }) => {
 
   useEffect(() => {
-    const datos = localStorage.getItem("recetas");
-    if (!datos) localStorage.setItem("recetas", JSON.stringify(defaultRecipes));
+    const datos = localStorage.getItem("blogRecetas");
+    if (!datos) localStorage.setItem("blogRecetas", JSON.stringify(defaultRecipes));
   }, []);
 
   return (

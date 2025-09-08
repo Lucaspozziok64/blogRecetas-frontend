@@ -32,7 +32,7 @@ function App() {
 
   const borrarReceta = (id) => {
     Swal.fire({
-      title: "Estas seguro de eliminar esta cita?",
+      title: "Estas seguro de eliminar esta receta?",
       text: "No podras revertir la tarjeta!",
       icon: "warning",
       showCancelButton: true,

@@ -47,7 +47,7 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
       reset();
       Swal.fire({
         title: "Receta creada",
-        text: `La pelicula/serie ${nuevaReceta.titulo} fue creada correctamente.`,
+        text: `La receta ${nuevaReceta.titulo} fue creada correctamente.`,
         icon: "success",
       });
       reset();
