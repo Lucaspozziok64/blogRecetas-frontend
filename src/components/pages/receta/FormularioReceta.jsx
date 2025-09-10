@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router";
-import { crearRecetas, obtenerRecetasPorId } from "../../../helpers/queries";
+import { crearRecetas, editarRecetas, obtenerRecetasPorId } from "../../../helpers/queries";
 
 const Formulariorecetas = ({
   titulo,
@@ -58,22 +58,15 @@ const Formulariorecetas = ({
 
     } else {
       if (titulo === "Editar receta") {
-        const recetaEditada = {
-          nombreReceta: receta.inputTitulo,
-          imagen: receta.inputImagen,
-          categoria: receta.inputCategoria,
-          descripcion: receta.descripcion,
-          pasos: receta.pasos,
-          id,
-        };
-
-        editarReceta(recetaEditada);
-        Swal.fire({
-          title: "Receta actualizada",
-          text: `La receta ${recetaEditada.nombreReceta} fue actualizada correctamente.`,
-          icon: "success",
-        });
-        reset();
+        const respuesta = await editarRecetas(receta, id)
+        if(respuesta.status === 200) {
+          Swal.fire({
+            title: "Receta actualizada",
+            text: `La receta ${receta.nombreReceta} fue actualizada correctamente.`,
+            icon: "success",
+          });
+          reset();
+        }
         navegacion("/administrador");
       }
     }
