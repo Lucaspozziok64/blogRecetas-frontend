@@ -54,6 +54,7 @@ const Administrador = ({ recetas, borrarReceta }) => {
               fila={indice + 1}
               receta={receta}
               borrarReceta={() => borrarReceta(receta.id)}
+              setListaRecetas={setListaRecetas}
             />
           ))}
         </tbody>

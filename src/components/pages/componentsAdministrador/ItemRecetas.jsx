@@ -1,7 +1,43 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router";
+import { borrarRecetaPorId, leerRecetas } from "../../../helpers/queries";
+import Swal from "sweetalert2";
 
-const ItemRecetas = ({ receta, fila, borrarReceta }) => {
+const ItemRecetas = ({ receta, fila, borrarReceta, setListaRecetas }) => {
+  const eliminarReceta = () => {
+    Swal.fire({
+      title: "Eliminar Receta",
+      text: "No puedes revertir este paso!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#146c43",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar!",
+      cancelButtonText: "cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        //Aqui borro efectivamente el
+        const respuesta = await borrarRecetaPorId(receta._id);
+        if (respuesta.status === 200) {
+          Swal.fire({
+            title: "Receta eliminada",
+            text: `La receta ${receta.nombreReceta} fue eliminada correctamente`,
+            icon: "success",
+          }); //Luego debo actualizar la tabla de productos
+          const respuestaRecetas = await leerRecetas();
+          const recetasActualizadas = await respuestaRecetas.json();
+          setListaRecetas(recetasActualizadas);
+        } else {
+          Swal.fire({
+            title: "Ocurrio un error",
+            text: `La receta ${receta.nombreReceta} no pudo ser eliminada`,
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
+
   return (
     <tr>
       <th className="text-center">{fila}</th>
@@ -17,7 +53,7 @@ const ItemRecetas = ({ receta, fila, borrarReceta }) => {
         >
           <i className="bi bi-pencil-square"></i>
         </Link>
-        <Button variant="danger" onClick={borrarReceta}>
+        <Button variant="danger" onClick={eliminarReceta}>
           <i className="bi bi-trash"></i>
         </Button>
       </td>
