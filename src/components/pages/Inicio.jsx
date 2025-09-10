@@ -12,7 +12,7 @@ const Inicio = ({ recetas }) => {
   }, []);
 
   return (
-    <main>
+    <main className="mb-3">
       <CaruselRecetas />
       <Titulo />
       <section className="container border border-success bg-gradient">

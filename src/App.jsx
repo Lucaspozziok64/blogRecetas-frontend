@@ -12,6 +12,7 @@ import Formulariorecetas from "./components/pages/receta/FormularioReceta";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 import DetalleReceta from "./components/pages/DetalleReceta";
+import Footer from "./components/shared/Footer";
 
 function App() {
   const recetasLocalStorage =
@@ -117,6 +118,7 @@ function App() {
             element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
           ></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
