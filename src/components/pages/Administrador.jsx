@@ -2,8 +2,25 @@ import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ItemRecetas from "./componentsAdministrador/ItemRecetas";
+import { useEffect, useState } from "react";
+import { leerRecetas } from "../../helpers/queries";
 
 const Administrador = ({ recetas, borrarReceta }) => {
+  const [listaRecetas, setListaRecetas] = useState([]);
+
+  useEffect(()=> {
+    obtenterRecetas();
+  }, [])
+
+  const obtenterRecetas = async ()=> {
+    const respuesta = await leerRecetas()
+    if(respuesta.status === 200) {
+      const datos = await respuesta.json();
+      setListaRecetas(datos);
+    } else {
+      console.log('Ocurrio un error al intentar leer las recetas')
+    }
+  }
   
   return (
     <section className="container mainSection">
@@ -31,9 +48,9 @@ const Administrador = ({ recetas, borrarReceta }) => {
           </tr>
         </thead>
         <tbody>
-          {recetas.map((receta, indice) => (
+          {listaRecetas.map((receta, indice) => (
             <ItemRecetas
-              key={receta.id}
+              key={receta._id}
               fila={indice + 1}
               receta={receta}
               borrarReceta={() => borrarReceta(receta.id)}
