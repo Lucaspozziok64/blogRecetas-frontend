@@ -4,11 +4,10 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router";
-import { obtenerRecetasPorId } from "../../../helpers/queries";
+import { crearRecetas, obtenerRecetasPorId } from "../../../helpers/queries";
 
 const Formulariorecetas = ({
   titulo,
-  crearRecetas,
   setRecetas,
   recetas,
   editarReceta,
@@ -33,36 +32,30 @@ const Formulariorecetas = ({
       const respuesta = await obtenerRecetasPorId(id);
       if (respuesta.status === 200) {
         const recetaBuscada = await respuesta.json();
-        setValue("inputTitulo", recetaBuscada.nombreReceta);
-        setValue("inputImagen", recetaBuscada.imagen);
-        setValue("inputCategoria", recetaBuscada.categoria);
+        setValue("nombreReceta", recetaBuscada.nombreReceta);
+        setValue("imagen", recetaBuscada.imagen);
+        setValue("categoria", recetaBuscada.categoria);
         setValue("descripcion", recetaBuscada.descripcion);
         setValue("pasos", recetaBuscada.pasos);
       }
     }
   };
 
-  const onSubmit = (receta) => {
+  const onSubmit = async (receta) => {
     if (titulo === "Crear receta") {
-      const { inputTitulo, inputImagen, inputCategoria, descripcion, pasos } =
-        receta;
-      const nuevaReceta = {
-        nombreReceta: inputTitulo,
-        imagen: inputImagen,
-        categoria: inputCategoria,
-        descripcion: descripcion,
-        pasos: pasos,
-      };
+      console.log(receta)
 
-      crearRecetas(nuevaReceta);
+      const respuesta = await crearRecetas(receta)
+      if(respuesta.status === 201) {
+        reset();
+        Swal.fire({
+          title: "Receta creada",
+          text: `La receta ${receta.nombreReceta} fue creada correctamente.`,
+          icon: "success",
+        });
+        reset();
+      }
 
-      reset();
-      Swal.fire({
-        title: "Receta creada",
-        text: `La receta ${nuevaReceta.nombreReceta} fue creada correctamente.`,
-        icon: "success",
-      });
-      reset();
     } else {
       if (titulo === "Editar receta") {
         const recetaEditada = {
@@ -96,7 +89,7 @@ const Formulariorecetas = ({
           <Form.Control
             type="text"
             placeholder="Ej: Ensalada Rusa"
-            {...register("inputTitulo", {
+            {...register("nombreReceta", {
               required: "El nombre de la receta es un dato obligatorio",
               minLength: {
                 value: 2,
@@ -119,7 +112,7 @@ const Formulariorecetas = ({
           <Form.Control
             type="text"
             placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
-            {...register("inputImagen", {
+            {...register("imagen", {
               required: "La url de la imagen es un dato obligatorio",
               pattern: {
                 value:
@@ -136,7 +129,7 @@ const Formulariorecetas = ({
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoría*</Form.Label>
           <Form.Select
-            {...register("inputCategoria", {
+            {...register("categoria", {
               required: "Debe seleccionar una categoria",
             })}
           >

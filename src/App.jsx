@@ -94,7 +94,6 @@ function App() {
                 element={
                   <Formulariorecetas
                     titulo={"Crear receta"}
-                    crearRecetas={crearRecetas}
                   />
                 }
               ></Route>
