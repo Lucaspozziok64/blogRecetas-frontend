@@ -1,4 +1,3 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router";
 import { Routes } from "react-router";
@@ -55,69 +54,68 @@ function App() {
   };
 
   const editarReceta = (recetaEditada) => {
-  const recetasActualizadas = recetas.map((receta) =>
-    receta.id === recetaEditada.id ? recetaEditada : receta
-  );
+    const recetasActualizadas = recetas.map((receta) =>
+      receta.id === recetaEditada.id ? recetaEditada : receta
+    );
 
-  setRecetas(recetasActualizadas);
-  localStorage.setItem("blogRecetas", JSON.stringify(recetasActualizadas));
-};
+    setRecetas(recetasActualizadas);
+    localStorage.setItem("blogRecetas", JSON.stringify(recetasActualizadas));
+  };
 
   return (
     <>
       <BrowserRouter>
         <Menu usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin} />
-        <Routes>
-          <Route path="/" element={<Inicio recetas={recetas} />}></Route>
-          <Route
-            path="/detalle"
-            element={
-              <DetalleReceta
-                recetas={recetas}
-                setRecetas={setRecetas}
-              />
-            }
-          ></Route>
-          <Route
-            path="/administrador"
-            element={<ProtectorAdmin isAdmin={usuarioAdmin} />}
-          >
+        <main className="mb-3">
+          <Routes>
+            <Route path="/" element={<Inicio recetas={recetas} />}></Route>
             <Route
-              index
+              path="/detalle"
               element={
-                <Administrador
-                  recetas={recetas}
-                  setRecetas={setRecetas}
-                  borrarReceta={borrarReceta}
-                />
+                <DetalleReceta recetas={recetas} setRecetas={setRecetas} />
               }
             ></Route>
             <Route
-              path="crear"
-              element={
-                <Formulariorecetas
-                  titulo={"Crear receta"}
-                  crearRecetas={crearRecetas}
-                />
-              }
-            ></Route>
+              path="/administrador"
+              element={<ProtectorAdmin isAdmin={usuarioAdmin} />}
+            >
+              <Route
+                index
+                element={
+                  <Administrador
+                    recetas={recetas}
+                    setRecetas={setRecetas}
+                    borrarReceta={borrarReceta}
+                  />
+                }
+              ></Route>
+              <Route
+                path="crear"
+                element={
+                  <Formulariorecetas
+                    titulo={"Crear receta"}
+                    crearRecetas={crearRecetas}
+                  />
+                }
+              ></Route>
+              <Route
+                path="editar/:id"
+                element={
+                  <Formulariorecetas
+                    titulo={"Editar receta"}
+                    setRecetas={setRecetas}
+                    recetas={recetas}
+                    editarReceta={editarReceta}
+                  />
+                }
+              ></Route>
+            </Route>
             <Route
-              path="editar/:id"
-              element={
-                <Formulariorecetas
-                  titulo={"Editar receta"}
-                  setRecetas={setRecetas}
-                  recetas={recetas}
-                  editarReceta={editarReceta}
-                />
-              }
+              path="/login"
+              element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
             ></Route>
-          </Route>
-          <Route
-            path="/login"
-            element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
-          ></Route>
-        </Routes>
+          </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
     </>

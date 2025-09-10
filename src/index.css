@@ -4,6 +4,10 @@
   min-height: 100vh;
 }
 
+main {
+  flex-grow: 1;
+}
+
 .imagenCarusel {
   height: 470px;
   object-fit: cover;
@@ -27,6 +31,13 @@
   padding-left: 100%; /* Inicia el texto fuera del contenedor */
   animation: scroll-left 10s linear infinite; /* Nombre de la animación, duración, tipo y repetición */
   will-change: transform; /* Optimiza la animación para el rendimiento */
+}
+
+
+.botonAdministrar {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
 }
 
 @keyframes scroll-left {
