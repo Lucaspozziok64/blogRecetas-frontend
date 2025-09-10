@@ -13,7 +13,7 @@ const ItemRecetas = ({ receta, fila, borrarReceta }) => {
       <td className="text-center">
         <Link
           className="me-lg-2 btn btn-warning"
-          to={`/administrador/editar/` + receta.id}
+          to={`/administrador/editar/` + receta._id}
         >
           <i className="bi bi-pencil-square"></i>
         </Link>

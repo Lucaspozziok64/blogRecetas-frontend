@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router";
+import { obtenerRecetasPorId } from "../../../helpers/queries";
 
 const Formulariorecetas = ({
   titulo,
@@ -24,10 +25,14 @@ const Formulariorecetas = ({
   const navegacion = useNavigate();
 
   useEffect(() => {
-    if (titulo === "Editar receta" && id) {
-      const recetaBuscada = recetas.find((receta) => receta.id === id);
+    obtenerReceta()
+  }, [titulo, id, recetas]);
 
-      if (recetaBuscada) {
+  const obtenerReceta = async () => {
+    if (titulo === "Editar receta" && id) {
+      const respuesta = await obtenerRecetasPorId(id);
+      if (respuesta.status === 200) {
+        const recetaBuscada = await respuesta.json();
         setValue("inputTitulo", recetaBuscada.nombreReceta);
         setValue("inputImagen", recetaBuscada.imagen);
         setValue("inputCategoria", recetaBuscada.categoria);
@@ -35,7 +40,7 @@ const Formulariorecetas = ({
         setValue("pasos", recetaBuscada.pasos);
       }
     }
-  }, [titulo, id, recetas]);
+  };
 
   const onSubmit = (receta) => {
     if (titulo === "Crear receta") {
@@ -76,7 +81,7 @@ const Formulariorecetas = ({
           icon: "success",
         });
         reset();
-        navegacion('/administrador')
+        navegacion("/administrador");
       }
     }
   };
