@@ -3,9 +3,15 @@ import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
-const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
+const Formulariorecetas = ({
+  titulo,
+  crearRecetas,
+  setRecetas,
+  recetas,
+  editarReceta,
+}) => {
   const {
     register,
     handleSubmit,
@@ -15,6 +21,7 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
   } = useForm();
 
   const { id } = useParams();
+  const navegacion = useNavigate();
 
   useEffect(() => {
     if (titulo === "Editar receta" && id) {
@@ -51,6 +58,26 @@ const Formulariorecetas = ({ titulo, crearRecetas, setRecetas, recetas }) => {
         icon: "success",
       });
       reset();
+    } else {
+      if (titulo === "Editar receta") {
+        const recetaEditada = {
+          nombreReceta: receta.inputTitulo,
+          imagen: receta.inputImagen,
+          categoria: receta.inputCategoria,
+          descripcion: receta.descripcion,
+          pasos: receta.pasos,
+          id,
+        };
+
+        editarReceta(recetaEditada);
+        Swal.fire({
+          title: "Receta actualizada",
+          text: `La receta ${recetaEditada.nombreReceta} fue actualizada correctamente.`,
+          icon: "success",
+        });
+        reset();
+        navegacion('/administrador')
+      }
     }
   };
 

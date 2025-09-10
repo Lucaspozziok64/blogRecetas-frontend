@@ -2,7 +2,6 @@ import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ItemRecetas from "./componentsAdministrador/ItemRecetas";
-import { defaultRecipes } from "../../data/datosPrueba";
 
 const Administrador = ({ recetas, borrarReceta }) => {
   

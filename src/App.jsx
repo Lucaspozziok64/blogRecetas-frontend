@@ -53,6 +53,15 @@ function App() {
     });
   };
 
+  const editarReceta = (recetaEditada) => {
+  const recetasActualizadas = recetas.map((receta) =>
+    receta.id === recetaEditada.id ? recetaEditada : receta
+  );
+
+  setRecetas(recetasActualizadas);
+  localStorage.setItem("blogRecetas", JSON.stringify(recetasActualizadas));
+};
+
   return (
     <>
       <BrowserRouter>
@@ -98,6 +107,7 @@ function App() {
                   titulo={"Editar receta"}
                   setRecetas={setRecetas}
                   recetas={recetas}
+                  editarReceta={editarReceta}
                 />
               }
             ></Route>
