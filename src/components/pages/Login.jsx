@@ -32,7 +32,7 @@ const Login = ({ setUsuarioAdmin }) => {
       Swal.fire({
         title: "Credenciales incorrectas!",
         text: `Error al iniciar sesion`,
-        icon: "Error",
+        icon: "error",
       });
     }
   };

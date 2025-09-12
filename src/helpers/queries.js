@@ -75,7 +75,7 @@ export const borrarRecetaPorId = async (id) => {
 
 export const login = async (dataUsuario) => {
   try {
-    const respuesta = await fetch(urlUsuarios + "/login", {
+    const respuesta = await fetch(urlUsuarios + '/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
