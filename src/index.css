@@ -61,4 +61,8 @@ main {
     width: 25%;
     margin-bottom: 1px;
   }
+
+  .botonLogout {
+    width: 25%;
+  }
 }

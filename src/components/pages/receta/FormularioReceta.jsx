@@ -43,7 +43,6 @@ const Formulariorecetas = ({
 
   const onSubmit = async (receta) => {
     if (titulo === "Crear receta") {
-      console.log(receta)
 
       const respuesta = await crearRecetas(receta)
       if(respuesta.status === 201) {

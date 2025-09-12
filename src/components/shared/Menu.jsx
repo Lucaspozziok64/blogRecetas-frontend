@@ -107,10 +107,13 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
               {usuarioAdmin.token ? (
                 <>
                   <NavLink className="nav-link" to={"/administrador"}>
-                    Administrador
+                    <span className="text-light">
+                      <i className="bi bi-person-circle me-2"></i>
+                      {usuarioAdmin.nombreUsuario}
+                    </span>
                   </NavLink>
-                  <Button className="nav-link w-25" onClick={logout}>
-                    Cerrar Sesion
+                  <Button className="nav-link botonLogout" onClick={logout}>
+                    Cerrar Sesion <i className="bi bi-power text-danger"></i>
                   </Button>
                 </>
               ) : (

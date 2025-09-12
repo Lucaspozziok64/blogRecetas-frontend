@@ -31,9 +31,6 @@ const Administrador = ({ recetas, borrarReceta }) => {
             <i className="bi bi-file-earmark-plus mx-1"></i>
             Agregar
           </Link>
-          <Button className="btn btn-info ms-2 text-light">
-            <i className="bi bi-database-fill-add"></i>
-          </Button>
         </div>
       </div>
       <hr />
