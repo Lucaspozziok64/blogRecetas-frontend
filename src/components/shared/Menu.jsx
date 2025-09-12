@@ -16,8 +16,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
       confirmButtonText: "Si, cerrar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        setUsuarioAdmin(false);
-        sessionStorage.removeItem("userKey");
+        setUsuarioAdmin({});
         navegacion("/");
         Swal.fire({
           title: "Sesion cerrada!",
@@ -54,7 +53,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
             <NavLink className="nav-link" to={"/"}>
               Inicio
             </NavLink>
-            {usuarioAdmin ? (
+            {usuarioAdmin.token ? (
               <>
                 <NavLink className="nav-link" to={"/administrador"}>
                   Administrador

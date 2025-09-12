@@ -32,6 +32,10 @@ function App() {
     localStorage.setItem("blogRecetas", JSON.stringify(recetas));
   }, [recetas]);
 
+    useEffect(() => {
+    sessionStorage.setItem("userKey", JSON.stringify(usuarioAdmin));
+  }, [usuarioAdmin]);
+
   const borrarReceta = (id) => {
     Swal.fire({
       title: "Estas seguro de eliminar esta receta?",
