@@ -39,7 +39,7 @@ const Login = ({ setUsuarioAdmin }) => {
 
   return (
     <section className="container my-3">
-      <h1 className="text-center my-5">Login</h1>
+      <h1 className="text-center my-3">Login</h1>
       <Row xs={1} md={2}>
         <Col className="mb-4">
           <Form onSubmit={handleSubmit(iniciarSesion)}>
@@ -85,6 +85,10 @@ const Login = ({ setUsuarioAdmin }) => {
               Enviar
             </Button>
           </Form>
+          <div className="my-3">
+            <span className="text-primary">¿No tenes una cuenta?</span>
+            <p>Create una cuenta en <strong>Crea tu cuenta</strong> haciendo click en el encabezado de la pagina</p>
+          </div>
         </Col>
         <Col>
           <img
