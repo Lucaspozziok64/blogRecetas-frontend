@@ -40,6 +40,10 @@ main {
     border-radius: 5px;
 }
 
+.colorFondoModal{
+  background-color: rgba(0, 0, 0, 0.8); /* 70% de opacidad del negro */
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0); /* Inicia desde la derecha */

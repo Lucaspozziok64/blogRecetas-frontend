@@ -96,17 +96,17 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal show={show} onHide={handleClose}>
+      <Modal backdrop={'static'} className="colorFondoModal" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center w-100">Crea tu cuenta</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <FormGroup className="mb-3" controlId="formBasicNombreUsuario">
+            <FormGroup className="mb-3" controlId="formNombreUsuario">
               <FormLabel>Nombre Usuario *</FormLabel>
               <FormControl type="text" placeholder="Ej: user1"></FormControl>
             </FormGroup>
-            <FormGroup className="mb-3" controlId="formBasicEmail">
+            <FormGroup className="mb-3" controlId="formEmail">
               <FormLabel>Email *</FormLabel>
               <FormControl
                 type="email"
@@ -115,7 +115,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
                 min={5}
               ></FormControl>
             </FormGroup>
-            <FormGroup className="mb-3" controlId="formBasicEmail">
+            <FormGroup className="mb-3" controlId="formPassword">
               <FormLabel>Contraseña *</FormLabel>
               <FormControl
                 type="password"
