@@ -1,9 +1,6 @@
 const urlRecetas = import.meta.env.VITE_API_RECETAS;
 const urlUsuarios = import.meta.env.VITE_API_USUARIOS;
 
-console.log(urlRecetas);
-console.log(urlUsuarios);
-
 export const leerRecetas = async () => {
   try {
     const respuesta = await fetch(urlRecetas);
@@ -81,6 +78,22 @@ export const login = async (dataUsuario) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataUsuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const crearUsuario = async (usuarioNuevo) => {
+  try {
+    const respuesta = await fetch(urlUsuarios, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuarioNuevo),
     });
     return respuesta;
   } catch (error) {
