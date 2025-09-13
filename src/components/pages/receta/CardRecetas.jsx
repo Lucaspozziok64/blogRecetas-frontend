@@ -6,7 +6,7 @@ const CardRecetas = ({ receta }) => (
     <h3>{receta.nombreReceta}</h3>
     <p>{receta.descripcion}</p>
     <p>{receta.categoria}</p>
-    <Link className="mb-2 bg-success text-center text-light text-decoration-none" to={`/detalle`}>Ver detalles</Link>
+    <Link className="mb-2 bg-success text-center text-light text-decoration-none" to={`/detalle/${receta._id}`}>Ver detalles</Link>
   </div>
 );
 

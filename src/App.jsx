@@ -74,7 +74,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Inicio recetas={recetas} />}></Route>
             <Route
-              path="/detalle"
+              path="/detalle/:id"
               element={
                 <DetalleReceta recetas={recetas} setRecetas={setRecetas} />
               }
