@@ -86,7 +86,7 @@ const Login = ({ setUsuarioAdmin }) => {
           </Form>
           <div className="my-3">
             <span className="text-primary">¿No tenes una cuenta?</span>
-            <p>Create una cuenta en <strong>Crea tu cuenta</strong> haciendo click en el encabezado de la pagina</p>
+            <p>Create una cuenta haciendo click  en el boton <strong>Crea tu cuenta</strong> en el encabezado de la pagina</p>
           </div>
         </Col>
         <Col>

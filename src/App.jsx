@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 import DetalleReceta from "./components/pages/DetalleReceta";
 import Footer from "./components/shared/Footer";
+import RutaProtegidaAdmin from "./components/routes/RutaProtegidaAdmin";
 
 function App() {
   const recetasLocalStorage =
@@ -35,6 +36,31 @@ function App() {
     useEffect(() => {
     sessionStorage.setItem("userKey", JSON.stringify(usuarioAdmin));
   }, [usuarioAdmin]);
+
+  
+    const iniciarSesion = async (usuario) => {
+      const respuesta = await login(usuario);
+      if (respuesta.status === 200) {
+        const datosUsuario = await respuesta.json();
+  
+        setUsuarioAdmin({
+          nombreUsuario: datosUsuario.nombreUsuario,
+          token: datosUsuario.token,
+        });
+        Swal.fire({
+          title: "Inicio de sesion correcto!",
+          text: `Bienevenido ${datosUsuario.nombreUsuario}`,
+          icon: "success",
+        });
+        navegacion("/administrador");
+      } else {
+        Swal.fire({
+          title: "Credenciales incorrectas!",
+          text: `Error al iniciar sesion`,
+          icon: "error",
+        });
+      }
+    };
 
   const borrarReceta = (id) => {
     Swal.fire({
@@ -75,8 +101,10 @@ function App() {
             <Route path="/" element={<Inicio recetas={recetas} />}></Route>
             <Route
               path="/detalle/:id"
-              element={
-                <DetalleReceta recetas={recetas} setRecetas={setRecetas} />
+              index element={
+                <RutaProtegidaAdmin isAdmin={usuarioAdmin}>
+                  <DetalleReceta recetas={recetas} setRecetas={setRecetas} />
+                </RutaProtegidaAdmin>
               }
             ></Route>
             <Route
