@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router";
 import { obtenerRecetasPorId } from "../../helpers/queries";
 import { useEffect, useState } from "react";
 
-const DetalleReceta = ({ receta }) => {
+const DetalleReceta = () => {
   const { id } = useParams();
   const [listaRecetas, setListaRecetas] = useState({});
 
@@ -22,7 +22,7 @@ const DetalleReceta = ({ receta }) => {
   return (
     <>
       <div className="p-2 me-3">
-        <Link className="text-danger">
+        <Link className="text-danger" to={'/'}>
           🔙 Volver a Inicio
         </Link>
       </div>
