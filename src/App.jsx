@@ -37,31 +37,6 @@ function App() {
     sessionStorage.setItem("userKey", JSON.stringify(usuarioAdmin));
   }, [usuarioAdmin]);
 
-  
-    const iniciarSesion = async (usuario) => {
-      const respuesta = await login(usuario);
-      if (respuesta.status === 200) {
-        const datosUsuario = await respuesta.json();
-  
-        setUsuarioAdmin({
-          nombreUsuario: datosUsuario.nombreUsuario,
-          token: datosUsuario.token,
-        });
-        Swal.fire({
-          title: "Inicio de sesion correcto!",
-          text: `Bienevenido ${datosUsuario.nombreUsuario}`,
-          icon: "success",
-        });
-        navegacion("/administrador");
-      } else {
-        Swal.fire({
-          title: "Credenciales incorrectas!",
-          text: `Error al iniciar sesion`,
-          icon: "error",
-        });
-      }
-    };
-
   const borrarReceta = (id) => {
     Swal.fire({
       title: "Estas seguro de eliminar esta receta?",
