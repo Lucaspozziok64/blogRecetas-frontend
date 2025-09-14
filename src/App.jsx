@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import DetalleReceta from "./components/pages/DetalleReceta";
 import Footer from "./components/shared/Footer";
 import RutaProtegidaAdmin from "./components/routes/RutaProtegidaAdmin";
+import Error404 from "./components/pages/Error404";
 
 function App() {
   const recetasLocalStorage =
@@ -145,6 +146,7 @@ function App() {
               path="/login"
               element={<Login setUsuarioAdmin={setUsuarioAdmin} />}
             ></Route>
+            <Route path="*" element={<Error404 />}></Route>
           </Routes>
         </main>
         <Footer />
